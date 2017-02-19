@@ -4,6 +4,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.abs;
+
+
 /**
  * Created by Arunan on 2/18/2017.
  */
@@ -26,9 +29,28 @@ public class UserLab {
         getAllUsers();
     }
 
-    public String[] getUsers(int tL, int iFL, int mFL, int rFL, int pL, int tW, int iFW, int mFW, int rFW, int pFW){
+    public String getUsers(int tL, int iFL, int mFL, int rFL, int pL, int tW, int iFW, int mFW, int rFW, int pFW){
+        String resultString = "";
+        for (int i = 0; i < this.users.size(); i++){
+            float sumAve = 0;
+            sumAve += (1.0-(float)(abs(users.get(i).getThumbLength() - tL)/users.get(i).getThumbLength()))*100;
+            sumAve += (1.0-(float)(abs(users.get(i).getIndexFingerLength() - iFL)/users.get(i).getIndexFingerLength()))*100;
+            sumAve += (1.0-(float)(abs(users.get(i).getMiddleFingerLength() - mFL)/users.get(i).getMiddleFingerLength()))*100;
+            sumAve += (1.0-(float)(abs(users.get(i).getRingFingerLength() - rFL)/users.get(i).getRingFingerLength()))*100;
+            sumAve += (1.0-(float)(abs(users.get(i).getPinkieFingerLength() - pL)/users.get(i).getPinkieFingerLength()))*100;
+            sumAve += (1.0-(float)(abs(users.get(i).getThumbWidth() - tW)/users.get(i).getThumbWidth()))*100;
+            sumAve += (1.0-(float)(abs(users.get(i).getIndexFingerWidth() - iFW)/users.get(i).getIndexFingerWidth()))*100;
+            sumAve += (1.0-(float)(abs(users.get(i).getMiddleFingerWidth() - mFW)/users.get(i).getMiddleFingerWidth()))*100;
+            sumAve += (1.0-(float)(abs(users.get(i).getRingFingerWidth() - rFW)/users.get(i).getRingFingerWidth()))*100;
+            sumAve += (1.0-(float)(abs(users.get(i).getPinkieFingerWidth() - pFW)/users.get(i).getPinkieFingerWidth()))*100;
 
-        return null;
+            float averagePerc = sumAve/10;
+            if (averagePerc > 50.0){
+                resultString += "" + (i+1) + " " + users.get(i).getName() + "\t \t " + averagePerc + "\n";
+            }
+
+        }
+        return resultString;
     }
 
     public List<User> getAllUsers(){
@@ -36,10 +58,10 @@ public class UserLab {
             Statement stmt = databaseConnection.createStatement();
             ResultSet result = stmt.executeQuery("SELECT * from " + constants.databaseUserTableName + " JOIN " +
                     constants.databaseMeasurementName + " WHERE " + "users.id = hand_measurement.id;");
-            System.out.println(result.toString());
+
             this.users = new ArrayList<User>();
             while(result.next()) {
-                users.add(new User(result.getString(1), result.getString(2), result.getInt(4), result.getInt(5),
+                users.add(new User(result.getString(2), result.getString(1), result.getInt(4), result.getInt(5),
                          result.getInt(6), result.getInt(7), result.getInt(8), result.getInt(9), result.getInt(10), result.getInt(11),
                                 result.getInt(12), result.getInt(13)));
             }

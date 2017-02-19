@@ -134,12 +134,15 @@ public class Main extends Application{
             }
         });
 
+        Label instruction = new Label("All measurements should be in mm");
+        GridPane.setConstraints(instruction, 1, 8);
+
         addGridPane.getChildren().addAll(   nameLabel, nameText, indexLabel, indexText,
                                             tLlabel, iFLlabel, mFLlabel, rFLlabel, pFlabel,
                                             tLtext,iFLtext, mFLtext, rFLtext, pLtext,
                                             tWlabel, iFWlabel, mFWlabel, rFWlabel, pWlabel,
                                             tWtext, iFWtext, mFWtext, rFWtext, pWtext,
-                                            addButton);
+                                            addButton, instruction);
 
 
 
@@ -232,12 +235,15 @@ public class Main extends Application{
             }
         });
 
+        Label instruction1 = new Label("All measurements should be in mm");
+        GridPane.setConstraints(instruction1, 1, 6);
+
         searchGridPane.getChildren().addAll(
                 tLlabel1, iFLlabel1, mFLlabel1, rFLlabel1, pFlabel1,
                 tLtext1,iFLtext1, mFLtext1, rFLtext1, pLtext1,
                 tWlabel1, iFWlabel1, mFWlabel1, rFWlabel1, pWlabel1,
                 tWtext1, iFWtext1, mFWtext1, rFWtext1, pWtext1,
-                searchButton);
+                searchButton, instruction1);
 
         HBox hbox2 = new HBox();
         hbox2.getChildren().add(searchGridPane);

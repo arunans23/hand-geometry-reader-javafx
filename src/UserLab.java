@@ -44,7 +44,7 @@ public class UserLab {
             sumAve += (1.0-(float)(abs(users.get(i).getRingFingerWidth() - rFW)/users.get(i).getRingFingerWidth()))*100;
             sumAve += (1.0-(float)(abs(users.get(i).getPinkieFingerWidth() - pFW)/users.get(i).getPinkieFingerWidth()))*100;
 
-            float averagePerc = sumAve/10;
+            float averagePerc = (float)sumAve/10;
             if (averagePerc > 50.0){
                 resultString += "" + (i+1) + " " + users.get(i).getName() + "\t \t " + averagePerc + "\n";
             }

@@ -227,11 +227,13 @@ public class Main extends Application{
         searchButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(userLab.getUsers(Integer.parseInt(tLtext1.getText()), Integer.parseInt(iFLtext1.getText()),
+                String res = userLab.getUsers(Integer.parseInt(tLtext1.getText()), Integer.parseInt(iFLtext1.getText()),
                         Integer.parseInt(mFLtext1.getText()), Integer.parseInt(rFLtext1.getText()),
                         Integer.parseInt(pLtext1.getText()), Integer.parseInt(tWtext1.getText()),
                         Integer.parseInt(iFWtext1.getText()), Integer.parseInt(mFWtext1.getText()),
-                        Integer.parseInt(rFWtext1.getText()), Integer.parseInt(pWtext1.getText())));
+                        Integer.parseInt(rFWtext1.getText()), Integer.parseInt(pWtext1.getText()));
+                System.out.println(res);
+                ResultBox.display("Result", res);
             }
         });
 

@@ -125,12 +125,26 @@ public class Main extends Application{
         addButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                userLab.addUser(new User(nameText.getText(), indexText.getText(),
-                        Integer.parseInt(tLtext.getText()), Integer.parseInt(iFLtext.getText()),
-                        Integer.parseInt(mFLtext.getText()), Integer.parseInt(rFLtext.getText()),
-                        Integer.parseInt(pLtext.getText()), Integer.parseInt(tWtext.getText()),
-                        Integer.parseInt(iFWtext.getText()), Integer.parseInt(mFWtext.getText()),
-                        Integer.parseInt(rFWtext.getText()), Integer.parseInt(pWtext.getText())));
+                if (nameText.getText().isEmpty() || indexText.getText().isEmpty() ||
+                        tLtext.getText().isEmpty() || iFLtext.getText().isEmpty() ||
+                        mFLtext.getText().isEmpty() ||  rFLtext.getText().isEmpty()||
+                        pLtext.getText().isEmpty()|| tWtext.getText().isEmpty() ||
+                        iFWtext.getText().isEmpty() ||  mFWtext.getText().isEmpty() ||
+                        rFWtext.getText().isEmpty() ||  pWtext.getText().isEmpty()){
+                    ResultBox.display("Error", "Fill all the boxes");
+                } else {
+                    try {
+                        userLab.addUser(new User(nameText.getText(), indexText.getText(),
+                                Integer.parseInt(tLtext.getText()), Integer.parseInt(iFLtext.getText()),
+                                Integer.parseInt(mFLtext.getText()), Integer.parseInt(rFLtext.getText()),
+                                Integer.parseInt(pLtext.getText()), Integer.parseInt(tWtext.getText()),
+                                Integer.parseInt(iFWtext.getText()), Integer.parseInt(mFWtext.getText()),
+                                Integer.parseInt(rFWtext.getText()), Integer.parseInt(pWtext.getText())));
+                    } catch (NumberFormatException e){
+                        ResultBox.display("Error", "Enter only valid characters in the boxes!!!");
+                    }
+                }
+
             }
         });
 

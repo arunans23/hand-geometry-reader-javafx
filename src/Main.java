@@ -227,13 +227,33 @@ public class Main extends Application{
         searchButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String res = userLab.getUsers(Integer.parseInt(tLtext1.getText()), Integer.parseInt(iFLtext1.getText()),
-                        Integer.parseInt(mFLtext1.getText()), Integer.parseInt(rFLtext1.getText()),
-                        Integer.parseInt(pLtext1.getText()), Integer.parseInt(tWtext1.getText()),
-                        Integer.parseInt(iFWtext1.getText()), Integer.parseInt(mFWtext1.getText()),
-                        Integer.parseInt(rFWtext1.getText()), Integer.parseInt(pWtext1.getText()));
-                System.out.println(res);
-                ResultBox.display("Result", res);
+                String res;
+                if (tLtext1.getText().isEmpty() || iFLtext1.getText().isEmpty() ||
+                        mFLtext1.getText().isEmpty() ||  rFLtext1.getText().isEmpty()||
+                        pLtext1.getText().isEmpty()|| tWtext1.getText().isEmpty() ||
+                        iFWtext1.getText().isEmpty() ||  mFWtext1.getText().isEmpty() ||
+                        rFWtext1.getText().isEmpty() ||  pWtext1.getText().isEmpty()){
+                        res = "Fill all the boxes!!!";
+                } else {
+                    try{
+                        res = userLab.getUsers(Integer.parseInt(tLtext1.getText()), Integer.parseInt(iFLtext1.getText()),
+                                Integer.parseInt(mFLtext1.getText()), Integer.parseInt(rFLtext1.getText()),
+                                Integer.parseInt(pLtext1.getText()), Integer.parseInt(tWtext1.getText()),
+                                Integer.parseInt(iFWtext1.getText()), Integer.parseInt(mFWtext1.getText()),
+                                Integer.parseInt(rFWtext1.getText()), Integer.parseInt(pWtext1.getText()));
+                    } catch (NumberFormatException e){
+                        res = "Enter valid characters inside the box!!!";
+                    }
+
+                }
+
+                if(res.equals("")){
+                    res = "No matches found";
+                } else {
+                    System.out.println(res);
+                    ResultBox.display("Result", res);
+                }
+
             }
         });
 

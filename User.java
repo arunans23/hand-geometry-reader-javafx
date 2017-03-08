@@ -1,6 +1,10 @@
 /**
  * Created by Arunan on 2/18/2017.
  */
+
+ /*
+    A model for the User which we are going to create and process
+ */
 public class User {
     private String name;
     private String userId;

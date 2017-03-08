@@ -13,7 +13,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
+import java.util.*;
+import java.io.*;
+
+/*
+  Main java class. Extends Application class of javafx library.
+  The entire code in this class creates a GUI for user to input data
+*/
 
 public class Main extends Application{
 
@@ -31,7 +37,6 @@ public class Main extends Application{
         Scene scene = new Scene(root, 800, 500, Color.WHITE);
 
         primaryStage.setOnCloseRequest( e -> {
-            MysqlCon.closeConnection();
             primaryStage.close();
         });
 
@@ -47,7 +52,7 @@ public class Main extends Application{
         addGridPane.setVgap(8);
         addGridPane.setHgap(10);
 
-        Label nameLabel = new Label("Fullname");
+        Label nameLabel = new Label("Firstname");
         GridPane.setConstraints(nameLabel, 1, 0);
 
         TextField nameText = new TextField();
@@ -148,8 +153,9 @@ public class Main extends Application{
             }
         });
 
-        Label instruction = new Label("All measurements should be in mm");
+        Label instruction = new Label("All measurements should be in mm\nDo not give spaces in the name");
         GridPane.setConstraints(instruction, 1, 8);
+
 
         addGridPane.getChildren().addAll(   nameLabel, nameText, indexLabel, indexText,
                                             tLlabel, iFLlabel, mFLlabel, rFLlabel, pFlabel,

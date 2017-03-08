@@ -10,6 +10,10 @@ import javafx.stage.Stage;
 /**
  * Created by Arunan on 2/20/2017.
  */
+
+ /*
+    This a class to display results or errors with a Result Box 
+ */
 public class ResultBox {
     public static void display(String title, String message){
         Stage window = new Stage();

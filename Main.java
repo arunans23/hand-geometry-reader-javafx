@@ -12,6 +12,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.*;
 import java.io.*;
@@ -52,7 +54,7 @@ public class Main extends Application{
         addGridPane.setVgap(8);
         addGridPane.setHgap(10);
 
-        Label nameLabel = new Label("Firstname");
+        Label nameLabel = new Label("Username");
         GridPane.setConstraints(nameLabel, 1, 0);
 
         TextField nameText = new TextField();
@@ -287,12 +289,29 @@ public class Main extends Application{
                 tWtext1, iFWtext1, mFWtext1, rFWtext1, pWtext1,
                 searchButton, instruction1);
 
+
+
         HBox hbox2 = new HBox();
         hbox2.getChildren().add(searchGridPane);
         hbox2.setAlignment(Pos.CENTER);
         searchTab.setContent(hbox2);
         searchTab.setClosable(false);
         tabPane.getTabs().add(searchTab);
+
+        Tab helpTab = new Tab();
+        helpTab.setText("Help");
+
+        Image image = new Image("image2.jpeg");
+        ImageView im = new ImageView();
+        im.setImage(image);
+
+        HBox hbox3 = new HBox();
+        hbox3.getChildren().add(im);
+        hbox3.setAlignment(Pos.CENTER);
+        helpTab.setContent(hbox3);
+        helpTab.setClosable(false);
+        tabPane.getTabs().add(helpTab);
+
 
 
         // bind to take available space
